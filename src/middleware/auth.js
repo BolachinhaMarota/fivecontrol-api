@@ -3,7 +3,7 @@ const supabase = require('../config/database');
 
 const verifyServerKey = async (req, res, next) => {
     try {
-        const serverKey = req.headers['x-server-key'];
+        const serverKey = req.headers['x-api-key'] || req.headers['x-server-key'];
         
         if (!serverKey) {
             return res.status(401).json({ error: 'Server API key required' });
